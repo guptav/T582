@@ -39,56 +39,102 @@
       width: 8.5in;
       min-height: 11in;
       margin: 0 auto;
-      padding: 0.55in;
+      padding: 0.45in 0.5in;
       background: linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
       display: flex;
       flex-direction: column;
-      gap: 0.28in;
+      gap: 0.22in;
     }
 
+    /* ── Header ── */
     header {
+      display: flex;
+      align-items: center;
+      gap: 0.2in;
       border-bottom: 4px solid var(--gold);
-      padding-bottom: 0.18in;
+      padding-bottom: 0.15in;
+    }
+
+    .header-logo {
+      flex-shrink: 0;
+    }
+
+    .header-logo img {
+      display: block;
+    }
+
+    .header-logo.bsa img  { height: 1.1in; width: auto; }
+    .header-logo.troop img { height: 0.95in; width: auto; }
+
+    .header-text {
+      flex: 1;
     }
 
     h1 {
-      margin: 0 0 0.08in;
-      font-size: 2rem;
+      margin: 0 0 0.06in;
+      font-size: 1.9rem;
       color: var(--green);
       letter-spacing: 0.02em;
     }
 
     .intro {
       display: grid;
-      gap: 0.16in;
-      font-size: 1rem;
+      gap: 0.1in;
+      font-size: 0.9rem;
+    }
+
+    .intro p {
+      margin: 0;
     }
 
     .highlight {
-      padding: 0.2in;
+      padding: 0.14in 0.18in;
       background: rgba(31, 95, 59, 0.08);
       border-left: 5px solid var(--green);
       font-weight: 700;
       color: var(--green);
     }
 
-    .content-grid {
+    /* ── Body two-column: photo strip | content ── */
+    .body-grid {
       display: grid;
-      grid-template-columns: 1.3fr 0.95fr;
-      gap: 0.25in;
+      grid-template-columns: 2.1in 1fr;
+      gap: 0.22in;
       flex: 1;
+    }
+
+    /* Left: stacked activity photos */
+    .photo-strip {
+      display: flex;
+      flex-direction: column;
+      gap: 0.1in;
+    }
+
+    .photo-strip img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Right: sections */
+    .content-col {
+      display: flex;
+      flex-direction: column;
+      gap: 0.18in;
     }
 
     section {
       background: rgba(255, 255, 255, 0.88);
       border: 1px solid var(--border);
       border-radius: 14px;
-      padding: 0.2in;
+      padding: 0.17in;
     }
 
     h2 {
-      margin: 0 0 0.12in;
-      font-size: 1.05rem;
+      margin: 0 0 0.1in;
+      font-size: 1rem;
       color: var(--green);
     }
 
@@ -98,23 +144,47 @@
     }
 
     li + li {
-      margin-top: 0.08in;
+      margin-top: 0.06in;
     }
 
-    .facts ul,
+    .facts ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .facts li {
+      margin-top: 0;
+      padding: 0.08in 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .facts li:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    /* Contact row: info + QR code side by side */
+    .contact-inner {
+      display: flex;
+      gap: 0.2in;
+      align-items: flex-start;
+    }
+
+    .contact-info {
+      flex: 1;
+    }
+
     .contact ul {
       list-style: none;
       padding: 0;
     }
 
-    .facts li,
     .contact li {
       margin-top: 0;
-      padding: 0.1in 0;
+      padding: 0.07in 0;
       border-bottom: 1px solid var(--border);
     }
 
-    .facts li:last-child,
     .contact li:last-child {
       border-bottom: 0;
       padding-bottom: 0;
@@ -127,12 +197,23 @@
     }
 
     .contact p {
-      margin: 0 0 0.12in;
+      margin: 0 0 0.1in;
       color: var(--muted);
+      font-size: 0.88rem;
     }
 
     .contact strong {
       color: var(--text);
+    }
+
+    .qr-code {
+      flex-shrink: 0;
+    }
+
+    .qr-code img {
+      display: block;
+      width: 1.1in;
+      height: 1.1in;
     }
 
     @media screen and (max-width: 900px) {
@@ -141,8 +222,21 @@
         min-height: auto;
       }
 
-      .content-grid {
+      header {
+        flex-wrap: wrap;
+      }
+
+      .body-grid {
         grid-template-columns: 1fr;
+      }
+
+      .photo-strip {
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+
+      .photo-strip img {
+        width: calc(50% - 0.05in);
       }
     }
   </style>
@@ -150,31 +244,48 @@
 <body>
   <main class="page">
     <header>
-      <h1>Join Troop 582!</h1>
-      <div class="intro">
-        <p>Scouts BSA Troop 582 is a large, diverse, very active, scout-led troop based in Saratoga, CA. It is our goal to help each scout grow into an independent and strong young person.</p>
-        <p>We are an outdoor activities club for girls ages 11 through 17, with opportunities for recognition and advancement through learning and practicing the tenets of the Scout Oath and Law.</p>
-        <div class="highlight">T582 scouts gain experience in practical life skills, outdoor adventure, environmental stewardship, community service, and youth leadership.</div>
+      <div class="header-logo bsa">
+        <img src="assets/images/Google_Shape_58_p13.png" alt="Boy Scouts of America logo">
+      </div>
+      <div class="header-text">
+        <h1>Join Troop 582!</h1>
+        <div class="intro">
+          <p>Scouts BSA Troop 582 is a large, diverse, very active, scout-led troop based in Saratoga, CA. It is our goal to help each scout grow into an independent and strong young person.</p>
+          <p>We are an outdoor activities club for girls ages 11 through 17, with opportunities for recognition and advancement through learning and practicing the tenets of the Scout Oath and Law.</p>
+          <div class="highlight">T582 scouts gain experience in practical life skills, outdoor adventure, environmental stewardship, community service, and youth leadership.</div>
+        </div>
+      </div>
+      <div class="header-logo troop">
+        <img src="assets/images/Google_Shape_59_p13.png" alt="Troop 582 — Nobody walks alone">
       </div>
     </header>
 
-    <div class="content-grid">
-      <section>
-        <h2>Recent activities</h2>
-        <ul>
-          <li>Backcountry canoe camping</li>
-          <li>Backpacking &ndash; Black Mountain, Yosemite, &amp; Philmont</li>
-          <li>Archery Campout</li>
-          <li>Snow Camping</li>
-          <li>Northern Tier Canoeing</li>
-          <li>Camp Chawanakee and Hi-Sierra</li>
-          <li>Rock Climbing &bull; Ice Skating</li>
-          <li>Seabase Sailing + Snorkeling</li>
-          <li>Angel Island camping</li>
-        </ul>
-      </section>
+    <div class="body-grid">
+      <!-- Left: stacked activity photos -->
+      <div class="photo-strip">
+        <img src="assets/images/Google_Shape_54_p13.png" alt="Backcountry canoe camping">
+        <img src="assets/images/Google_Shape_62_p13.jpg" alt="Scout activity">
+        <img src="assets/images/Google_Shape_61_p13.jpg" alt="Backpacking at Yosemite">
+        <img src="assets/images/Google_Shape_60_p13.jpg" alt="Scout activity">
+      </div>
 
-      <div>
+      <!-- Right: content sections -->
+      <div class="content-col">
+        <section>
+          <h2>Recent activities</h2>
+          <ul>
+            <li>Backcountry canoe camping</li>
+            <li>Backpacking &ndash; Black Mountain, Yosemite, &amp; Philmont</li>
+            <li>Archery Campout</li>
+            <li>Snow Camping</li>
+            <li>Northern Tier Canoeing</li>
+            <li>Camp Chawanakee and Hi-Sierra</li>
+            <li>Rock Climbing &bull; Ice Skating</li>
+            <li>Seabase Sailing + Snorkeling</li>
+            <li>Angel Island camping</li>
+          </ul>
+        </section>
+
         <section class="facts">
           <h2>Key facts</h2>
           <ul>
@@ -186,15 +297,22 @@
           </ul>
         </section>
 
-        <section class="contact" style="margin-top: 0.2in;">
+        <section class="contact">
           <h2>Contact us to learn more!</h2>
-          <p>We would love to connect with prospective scouts and families.</p>
-          <ul>
-            <li><strong>Website:</strong> <a href="https://troop582.org">Troop582.org</a></li>
-            <li><strong>Scoutmaster:</strong> Jessica Ollmann</li>
-            <li><strong>Email:</strong> <a href="mailto:Jess.ollman@me.com">Jess.ollman@me.com</a></li>
-            <li><strong>Phone:</strong> <a href="tel:+16502247653">(650) 224-7653</a></li>
-          </ul>
+          <div class="contact-inner">
+            <div class="contact-info">
+              <p>We would love to connect with prospective scouts and families.</p>
+              <ul>
+                <li><strong>Website:</strong> <a href="https://troop582.org">Troop582.org</a></li>
+                <li><strong>Scoutmaster:</strong> Jessica Ollmann</li>
+                <li><strong>Email:</strong> <a href="mailto:info@troop582.org">info@troop582.org</a></li>
+                <li><strong>Phone:</strong> <a href="tel:+16502247653">(650) 224-7653</a></li>
+              </ul>
+            </div>
+            <div class="qr-code">
+              <img src="assets/images/Google_Shape_63_p13.png" alt="QR code — scan to visit Troop582.org">
+            </div>
+          </div>
         </section>
       </div>
     </div>
