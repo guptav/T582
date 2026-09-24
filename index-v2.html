@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Join Troop 582!</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    @page {
+      size: Letter;
+      margin: 0.4in;
+    }
+
+    :root {
+      color-scheme: light;
+      --green: #1a5c38;
+      --green-light: #e8f5ee;
+      --gold: #c69214;
+      --gold-light: #fdf6e3;
+      --text: #1a2430;
+      --muted: #52606d;
+      --bg: #f4f9f5;
+      --border: #cfe0d4;
+      --shadow: 0 2px 8px rgba(31,95,59,0.10);
+      --radius: 12px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', Arial, sans-serif;
+      color: var(--text);
+      background: #deeee3;
+      line-height: 1.45;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    /* ── Page shell ── */
+    .page {
+      width: 8.5in;
+      min-height: 11in;
+      margin: 0 auto;
+      padding: 0.38in 0.44in 0.38in;
+      background: linear-gradient(170deg, #ffffff 0%, var(--bg) 100%);
+      display: flex;
+      flex-direction: column;
+      gap: 0.18in;
+    }
+
+    /* ── Header ── */
+    header {
+      display: flex;
+      align-items: center;
+      gap: 0.18in;
+      background: linear-gradient(135deg, var(--green) 0%, #2d7a50 100%);
+      border-radius: var(--radius);
+      padding: 0.2in 0.25in;
+      color: #fff;
+    }
+
+    .header-logo { flex-shrink: 0; }
+    .header-logo img { display: block; }
+    .header-logo.bsa img   { height: 0.95in; width: auto; }
+    .header-logo.troop img { height: 0.85in; width: auto; }
+
+    .header-text { flex: 1; }
+
+    h1 {
+      margin: 0 0 0.06in;
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.01em;
+      line-height: 1.15;
+    }
+
+    h1 span {
+      color: var(--gold);
+    }
+
+    .tagline {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.82);
+      margin: 0 0 0.1in;
+    }
+
+    .highlight {
+      padding: 0.11in 0.16in;
+      background: rgba(255,255,255,0.15);
+      border-left: 4px solid var(--gold);
+      border-radius: 0 8px 8px 0;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    /* ── Body two-column ── */
+    .body-grid {
+      display: grid;
+      grid-template-columns: 1.95in 1fr;
+      gap: 0.18in;
+      flex: 1;
+    }
+
+    /* Left: photo strip */
+    .photo-strip {
+      display: flex;
+      flex-direction: column;
+      gap: 0.09in;
+    }
+
+    .photo-wrap {
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      flex: 1;
+    }
+
+    .photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .photo-wrap:hover img {
+      transform: scale(1.04);
+    }
+
+    .photo-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 0.06in 0.1in;
+      background: linear-gradient(transparent, rgba(0,0,0,0.62));
+      color: #fff;
+      font-size: 0.67rem;
+      font-weight: 600;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+      border-radius: 0 0 10px 10px;
+    }
+
+    .photo-wrap:hover .photo-caption {
+      opacity: 1;
+    }
+
+    /* Right: sections */
+    .content-col {
+      display: flex;
+      flex-direction: column;
+      gap: 0.14in;
+    }
+
+    section {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.15in 0.18in;
+      box-shadow: var(--shadow);
+    }
+
+    /* Section header bar */
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 0.08in;
+      margin-bottom: 0.1in;
+      padding-bottom: 0.07in;
+      border-bottom: 2px solid var(--green-light);
+    }
+
+    .section-icon {
+      font-size: 1rem;
+      line-height: 1;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 0.93rem;
+      font-weight: 700;
+      color: var(--green);
+      letter-spacing: 0.01em;
+      text-transform: uppercase;
+    }
+
+    /* Activities list */
+    .activities ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.04in 0.12in;
+    }
+
+    .activities li {
+      font-size: 0.83rem;
+      padding: 0.05in 0;
+      border-bottom: 1px solid #f0f4f0;
+      display: flex;
+      align-items: baseline;
+      gap: 0.05in;
+    }
+
+    .activities li:nth-last-child(-n+2) {
+      border-bottom: none;
+    }
+
+    /* Benefits / facts */
+    .facts ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .facts li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.08in;
+      padding: 0.07in 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.84rem;
+      line-height: 1.4;
+    }
+
+    .facts li:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .facts li .fact-icon {
+      font-size: 1rem;
+      flex-shrink: 0;
+      margin-top: 0.01in;
+    }
+
+    /* Welcome kit callout */
+    .kit-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.08in;
+      background: var(--gold-light);
+      border: 1.5px solid var(--gold);
+      border-radius: 8px;
+      padding: 0.08in 0.12in;
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: #7a5800;
+      margin-top: 0.07in;
+    }
+
+    .kit-badge .kit-icon { font-size: 1.1rem; }
+
+    /* Testimonial pull-quote */
+    .testimonial {
+      margin-top: 0.09in;
+      padding: 0.1in 0.14in;
+      background: var(--green-light);
+      border-left: 4px solid var(--green);
+      border-radius: 0 8px 8px 0;
+      font-size: 0.82rem;
+      font-style: italic;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .testimonial cite {
+      display: block;
+      margin-top: 0.04in;
+      font-style: normal;
+      font-weight: 700;
+      font-size: 0.78rem;
+      color: var(--green);
+    }
+
+    /* Urgency bar */
+    .urgency-bar {
+      display: flex;
+      align-items: center;
+      gap: 0.08in;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 6px;
+      padding: 0.06in 0.12in;
+      font-size: 0.79rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.95);
+      margin-top: 0.08in;
+    }
+
+    .urgency-bar .dot {
+      width: 7px;
+      height: 7px;
+      background: #6ee896;
+      border-radius: 50%;
+      flex-shrink: 0;
+      animation: pulse 1.6s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    /* Contact */
+    .contact-inner {
+      display: flex;
+      gap: 0.16in;
+      align-items: flex-start;
+    }
+
+    .contact-info { flex: 1; }
+
+    .contact-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .contact-links li {
+      display: flex;
+      align-items: center;
+      gap: 0.06in;
+      padding: 0.06in 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.83rem;
+    }
+
+    .contact-links li:last-child { border-bottom: none; }
+
+    .contact-links .link-icon { font-size: 0.9rem; }
+
+    .contact-links a {
+      color: var(--green);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .contact-links a:hover { text-decoration: underline; }
+
+    .cta-btn {
+      display: inline-block;
+      margin-top: 0.1in;
+      padding: 0.08in 0.2in;
+      background: var(--gold);
+      color: #fff;
+      font-family: inherit;
+      font-size: 0.83rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+
+    .qr-wrap {
+      flex-shrink: 0;
+      text-align: center;
+    }
+
+    .qr-wrap img {
+      display: block;
+      width: 1.05in;
+      height: 1.05in;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+    }
+
+    .qr-label {
+      font-size: 0.65rem;
+      color: var(--muted);
+      margin-top: 0.04in;
+      text-align: center;
+    }
+
+    /* ── Responsive ── */
+    @media screen and (max-width: 900px) {
+      .page { width: 100%; min-height: auto; padding: 1rem; }
+      header { flex-wrap: wrap; border-radius: 10px; }
+      .body-grid { grid-template-columns: 1fr; }
+      .photo-strip { flex-direction: row; flex-wrap: wrap; }
+      .photo-wrap { flex: 1 1 calc(50% - 0.09in); min-height: 1.5in; }
+      .activities ul { grid-template-columns: 1fr; }
+    }
+
+    @media print {
+      body { background: none; }
+      .page { box-shadow: none; }
+      .cta-btn { background: var(--gold) !important; }
+      .urgency-bar .dot { animation: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+
+    <!-- ── Header ── -->
+    <header>
+      <div class="header-logo bsa">
+        <img src="assets/images/Google_Shape_58_p13.png" alt="Boy Scouts of America logo">
+      </div>
+      <div class="header-text">
+        <h1>She&rsquo;ll Lead. She&rsquo;ll Explore. She&rsquo;ll Thrive. &mdash;<br><span>Join Troop 582!</span></h1>
+        <p class="tagline"><strong>60+ scouts strong</strong> &bull; <strong>25+ Eagles in 6 years</strong> &bull; Girls ages 11&ndash;17 &bull; Saratoga, CA &bull; Est. 2018</p>
+        <div class="highlight">Lead. Explore. Serve. <em>Nobody walks alone.</em></div>
+        <div class="urgency-bar"><span class="dot"></span> Meetings every Tuesday &bull; New scouts welcome year-round</div>
+      </div>
+      <div class="header-logo troop">
+        <img src="assets/images/Google_Shape_59_p13.png" alt="Troop 582 — Nobody walks alone">
+      </div>
+    </header>
+
+    <!-- ── Body ── -->
+    <div class="body-grid">
+
+      <!-- Left: stacked activity photos -->
+      <div class="photo-strip">
+        <div class="photo-wrap">
+          <img src="assets/images/Google_Shape_54_p13.png" alt="Backcountry canoe camping">
+          <div class="photo-caption">Backcountry Canoe Camping</div>
+        </div>
+        <div class="photo-wrap">
+          <img src="assets/images/Google_Shape_62_p13.jpg" alt="Scout campout activity">
+          <div class="photo-caption">Campout Adventure</div>
+        </div>
+        <div class="photo-wrap">
+          <img src="assets/images/Google_Shape_61_p13.jpg" alt="Backpacking at Yosemite">
+          <div class="photo-caption">Backpacking at Yosemite</div>
+        </div>
+        <div class="photo-wrap">
+          <img src="assets/images/Google_Shape_60_p13.jpg" alt="Scout activity">
+          <div class="photo-caption">Northern Tier Canoeing</div>
+        </div>
+      </div>
+
+      <!-- Right: content sections -->
+      <div class="content-col">
+
+        <!-- Activities -->
+        <section class="activities">
+          <div class="section-header">
+            <span class="section-icon">🗺️</span>
+            <h2>Adventures you&rsquo;ll actually do</h2>
+          </div>
+          <ul>
+            <li>🛶 Backcountry canoe camping</li>
+            <li>🏔️ Backpacking &mdash; Yosemite &amp; Philmont</li>
+            <li>🏹 Archery Campout</li>
+            <li>❄️ Snow Camping</li>
+            <li>🚣 Northern Tier Canoeing</li>
+            <li>⛺ Camp Chawanakee &amp; Hi-Sierra</li>
+            <li>🧗 Rock Climbing &bull; Ice Skating</li>
+            <li>⛵ SeaBase Sailing + Snorkeling</li>
+            <li>🏕️ Angel Island camping</li>
+          </ul>
+        </section>
+
+        <!-- Benefits -->
+        <section class="facts">
+          <div class="section-header">
+            <span class="section-icon">🌟</span>
+            <h2>Why girls choose T582</h2>
+          </div>
+          <ul>
+            <li>
+              <span class="fact-icon">🏆</span>
+              <span>A proven path to <strong>Eagle Scout</strong> &mdash; <strong>25+ Eagles</strong> in just 6 years</span>
+            </li>
+            <li>
+              <span class="fact-icon">📅</span>
+              <span><strong>25+ outings</strong> planned in 2026 &mdash; something epic every month</span>
+            </li>
+            <li>
+              <span class="fact-icon">🌄</span>
+              <span><strong>2 summer camps</strong> &amp; <strong>2 high adventure trips</strong> every year</span>
+            </li>
+            <li>
+              <span class="fact-icon">🤝</span>
+              <span>A community of <strong>60+ scouts</strong> &amp; <strong>20+ trained adult leaders</strong> in your corner</span>
+            </li>
+            <li>
+              <span class="fact-icon">🎓</span>
+              <span>Real life skills: leadership, navigation, first aid &amp; environmental stewardship</span>
+            </li>
+          </ul>
+          <!-- Free welcome kit callout -->
+          <div class="kit-badge">
+            <span class="kit-icon">🎁</span>
+            <span>Free welcome kit &mdash; yours when you attend your first meeting: T582 Class B t-shirt, troop patches &amp; neckerchief!</span>
+          </div>
+          <!-- Testimonial -->
+          <blockquote class="testimonial">
+            &ldquo;T582 gave my daughter confidence she never had before. The friendships, the adventures, the leadership &mdash; it&rsquo;s unlike anything else.&rdquo;
+            <cite>&mdash; T582 Scout Parent</cite>
+          </blockquote>
+        </section>
+
+        <!-- Contact -->
+        <section class="contact">
+          <div class="section-header">
+            <span class="section-icon">📬</span>
+            <h2>Ready to start? Let&rsquo;s talk!</h2>
+          </div>
+          <div class="contact-inner">
+            <div class="contact-info">
+              <ul class="contact-links">
+                <li><span class="link-icon">🌐</span> <strong>Web:</strong>&nbsp;<a href="https://troop582.org">Troop582.org</a></li>
+                <li><span class="link-icon">👩‍✈️</span> <strong>Scoutmaster:</strong>&nbsp;Jessica Ollmann</li>
+                <li><span class="link-icon">✉️</span> <strong>Email:</strong>&nbsp;<a href="mailto:info@troop582.org">info@troop582.org</a></li>
+                <li><span class="link-icon">📞</span> <strong>Phone:</strong>&nbsp;<a href="tel:+16502247653">(650) 224-7653</a></li>
+              </ul>
+              <a class="cta-btn" href="mailto:info@troop582.org">Claim your free welcome kit &rarr;</a>
+            </div>
+            <div class="qr-wrap">
+              <img src="assets/images/Google_Shape_63_p13.png" alt="QR code — scan to visit Troop582.org">
+              <p class="qr-label">Scan to visit<br>Troop582.org</p>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </main>
+</body>
+</html>
