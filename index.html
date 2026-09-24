@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Join Troop 582!</title>
+  <style>
+    @page {
+      size: Letter;
+      margin: 0.5in;
+    }
+
+    :root {
+      color-scheme: light;
+      --green: #1f5f3b;
+      --gold: #c69214;
+      --text: #1f2933;
+      --muted: #52606d;
+      --bg: #f7faf7;
+      --border: #d9e2d9;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: #eef4ee;
+      line-height: 1.35;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .page {
+      width: 8.5in;
+      min-height: 11in;
+      margin: 0 auto;
+      padding: 0.55in;
+      background: linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
+      display: flex;
+      flex-direction: column;
+      gap: 0.28in;
+    }
+
+    header {
+      border-bottom: 4px solid var(--gold);
+      padding-bottom: 0.18in;
+    }
+
+    h1 {
+      margin: 0 0 0.08in;
+      font-size: 2rem;
+      color: var(--green);
+      letter-spacing: 0.02em;
+    }
+
+    .intro {
+      display: grid;
+      gap: 0.16in;
+      font-size: 1rem;
+    }
+
+    .highlight {
+      padding: 0.2in;
+      background: rgba(31, 95, 59, 0.08);
+      border-left: 5px solid var(--green);
+      font-weight: 700;
+      color: var(--green);
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 0.95fr;
+      gap: 0.25in;
+      flex: 1;
+    }
+
+    section {
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 0.2in;
+    }
+
+    h2 {
+      margin: 0 0 0.12in;
+      font-size: 1.05rem;
+      color: var(--green);
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 1.1rem;
+    }
+
+    li + li {
+      margin-top: 0.08in;
+    }
+
+    .facts ul,
+    .contact ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .facts li,
+    .contact li {
+      margin-top: 0;
+      padding: 0.1in 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .facts li:last-child,
+    .contact li:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .contact a {
+      color: var(--green);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .contact p {
+      margin: 0 0 0.12in;
+      color: var(--muted);
+    }
+
+    .contact strong {
+      color: var(--text);
+    }
+
+    @media screen and (max-width: 900px) {
+      .page {
+        width: 100%;
+        min-height: auto;
+      }
+
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <h1>Join Troop 582!</h1>
+      <div class="intro">
+        <p>Scouts BSA Troop 582 is a large, diverse, very active, scout-led troop based in Saratoga, CA. It is our goal to help each scout grow into an independent and strong young person.</p>
+        <p>We are an outdoor activities club for girls ages 11 through 17, with opportunities for recognition and advancement through learning and practicing the tenets of the Scout Oath and Law.</p>
+        <div class="highlight">T582 scouts gain experience in practical life skills, outdoor adventure, environmental stewardship, community service, and youth leadership.</div>
+      </div>
+    </header>
+
+    <div class="content-grid">
+      <section>
+        <h2>Recent activities</h2>
+        <ul>
+          <li>Backcountry canoe camping</li>
+          <li>Backpacking &ndash; Black Mountain, Yosemite, &amp; Philmont</li>
+          <li>Archery Campout</li>
+          <li>Snow Camping</li>
+          <li>Northern Tier Canoeing</li>
+          <li>Camp Chawanakee and Hi-Sierra</li>
+          <li>Rock Climbing &bull; Ice Skating</li>
+          <li>Seabase Sailing + Snorkeling</li>
+          <li>Angel Island camping</li>
+        </ul>
+      </section>
+
+      <div>
+        <section class="facts">
+          <h2>Key facts</h2>
+          <ul>
+            <li><strong>60+</strong> active scouts</li>
+            <li><strong>20+</strong> trained adult leaders</li>
+            <li><strong>2</strong> summer camps &amp; <strong>2</strong> high adventure trips annually</li>
+            <li><strong>25+</strong> outings planned in 2026</li>
+            <li><strong>25+</strong> Eagle Scouts since troop began 6 years ago</li>
+          </ul>
+        </section>
+
+        <section class="contact" style="margin-top: 0.2in;">
+          <h2>Contact us to learn more!</h2>
+          <p>We would love to connect with prospective scouts and families.</p>
+          <ul>
+            <li><strong>Website:</strong> <a href="https://troop582.org">Troop582.org</a></li>
+            <li><strong>Scoutmaster:</strong> Jessica Ollmann</li>
+            <li><strong>Email:</strong> <a href="mailto:Jess.ollman@me.com">Jess.ollman@me.com</a></li>
+            <li><strong>Phone:</strong> <a href="tel:+16502247653">(650) 224-7653</a></li>
+          </ul>
+        </section>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
