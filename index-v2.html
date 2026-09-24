@@ -259,6 +259,57 @@
 
     .kit-badge .kit-icon { font-size: 1.1rem; }
 
+    /* Testimonial pull-quote */
+    .testimonial {
+      margin-top: 0.09in;
+      padding: 0.1in 0.14in;
+      background: var(--green-light);
+      border-left: 4px solid var(--green);
+      border-radius: 0 8px 8px 0;
+      font-size: 0.82rem;
+      font-style: italic;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .testimonial cite {
+      display: block;
+      margin-top: 0.04in;
+      font-style: normal;
+      font-weight: 700;
+      font-size: 0.78rem;
+      color: var(--green);
+    }
+
+    /* Urgency bar */
+    .urgency-bar {
+      display: flex;
+      align-items: center;
+      gap: 0.08in;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 6px;
+      padding: 0.06in 0.12in;
+      font-size: 0.79rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.95);
+      margin-top: 0.08in;
+    }
+
+    .urgency-bar .dot {
+      width: 7px;
+      height: 7px;
+      background: #6ee896;
+      border-radius: 50%;
+      flex-shrink: 0;
+      animation: pulse 1.6s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
     /* Contact */
     .contact-inner {
       display: flex;
@@ -299,7 +350,7 @@
       display: inline-block;
       margin-top: 0.1in;
       padding: 0.08in 0.2in;
-      background: var(--green);
+      background: var(--gold);
       color: #fff;
       font-family: inherit;
       font-size: 0.83rem;
@@ -344,7 +395,8 @@
     @media print {
       body { background: none; }
       .page { box-shadow: none; }
-      .cta-btn { background: var(--green) !important; }
+      .cta-btn { background: var(--gold) !important; }
+      .urgency-bar .dot { animation: none; }
     }
   </style>
 </head>
@@ -357,9 +409,10 @@
         <img src="assets/images/Google_Shape_58_p13.png" alt="Boy Scouts of America logo">
       </div>
       <div class="header-text">
-        <h1>Your Adventure Starts Here &mdash;<br><span>Join Troop 582!</span></h1>
-        <p class="tagline">Scouts BSA &bull; Girls ages 11&ndash;17 &bull; Saratoga, CA &bull; Scout-led &bull; Est. 2018</p>
+        <h1>She&rsquo;ll Lead. She&rsquo;ll Explore. She&rsquo;ll Thrive. &mdash;<br><span>Join Troop 582!</span></h1>
+        <p class="tagline"><strong>60+ scouts strong</strong> &bull; <strong>25+ Eagles in 6 years</strong> &bull; Girls ages 11&ndash;17 &bull; Saratoga, CA &bull; Est. 2018</p>
         <div class="highlight">Lead. Explore. Serve. <em>Nobody walks alone.</em></div>
+        <div class="urgency-bar"><span class="dot"></span> Meetings every Tuesday &bull; New scouts welcome year-round</div>
       </div>
       <div class="header-logo troop">
         <img src="assets/images/Google_Shape_59_p13.png" alt="Troop 582 — Nobody walks alone">
@@ -415,7 +468,7 @@
         <section class="facts">
           <div class="section-header">
             <span class="section-icon">🌟</span>
-            <h2>What you get when you join</h2>
+            <h2>Why girls choose T582</h2>
           </div>
           <ul>
             <li>
@@ -442,8 +495,13 @@
           <!-- Free welcome kit callout -->
           <div class="kit-badge">
             <span class="kit-icon">🎁</span>
-            <span>Free welcome kit when you join: T582 Class B t-shirt, troop patches &amp; neckerchief!</span>
+            <span>Free welcome kit &mdash; yours when you attend your first meeting: T582 Class B t-shirt, troop patches &amp; neckerchief!</span>
           </div>
+          <!-- Testimonial -->
+          <blockquote class="testimonial">
+            &ldquo;T582 gave my daughter confidence she never had before. The friendships, the adventures, the leadership &mdash; it&rsquo;s unlike anything else.&rdquo;
+            <cite>&mdash; T582 Scout Parent</cite>
+          </blockquote>
         </section>
 
         <!-- Contact -->
@@ -460,7 +518,7 @@
                 <li><span class="link-icon">✉️</span> <strong>Email:</strong>&nbsp;<a href="mailto:info@troop582.org">info@troop582.org</a></li>
                 <li><span class="link-icon">📞</span> <strong>Phone:</strong>&nbsp;<a href="tel:+16502247653">(650) 224-7653</a></li>
               </ul>
-              <a class="cta-btn" href="mailto:info@troop582.org">Email us to get started &rarr;</a>
+              <a class="cta-btn" href="mailto:info@troop582.org">Claim your free welcome kit &rarr;</a>
             </div>
             <div class="qr-wrap">
               <img src="assets/images/Google_Shape_63_p13.png" alt="QR code — scan to visit Troop582.org">
