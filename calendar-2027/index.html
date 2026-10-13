@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2027 Troop 582 Calendar</title>
+    <style>
+      :root {
+        --wall: #5f5c5b;
+        --board: #eeede7;
+        --ink: #1b1b1b;
+        --line: #0f0f0f;
+        --day: rgba(222, 121, 82, 0.18);
+        --blue: rgba(94, 110, 232, 0.14);
+        --green: rgba(68, 176, 117, 0.12);
+        --gold: rgba(205, 178, 59, 0.2);
+      }
+
+      * { box-sizing: border-box; }
+
+      html, body {
+        margin: 0;
+        height: 100%;
+      }
+
+      body {
+        background: var(--wall);
+        font-family: "Comic Sans MS", "Segoe Print", "Bradley Hand", cursive;
+        color: var(--ink);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .board-wrap {
+        width: min(1260px, 97vw);
+        padding: 18px 12px 26px;
+      }
+
+      .board {
+        position: relative;
+        background: var(--board);
+        border: 4px solid var(--line);
+        border-radius: 10px;
+        min-height: 760px;
+        box-shadow: 0 18px 28px rgba(0,0,0,0.18);
+        overflow: hidden;
+      }
+
+      .board::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: repeating-linear-gradient(
+          to bottom,
+          rgba(0,0,0,0.015),
+          rgba(0,0,0,0.015) 2px,
+          transparent 2px,
+          transparent 8px
+        );
+        pointer-events: none;
+      }
+
+      .calendar-grid {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 8px;
+        width: calc(100% - 330px);
+        padding: 80px 18px 18px 18px;
+      }
+
+      .month {
+        border: 3px solid var(--line);
+        min-height: 250px;
+        padding: 8px 8px 10px;
+        border-radius: 4px;
+        background: rgba(255,255,255,0.03);
+      }
+
+      .month-header {
+        text-align: center;
+        border-bottom: 2px solid var(--line);
+        font-size: clamp(1rem, 1.5vw, 1.8rem);
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        padding-bottom: 4px;
+        margin-bottom: 6px;
+      }
+
+      .month ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 4px;
+        font-size: clamp(0.72rem, 0.8vw, 1rem);
+        line-height: 1.12;
+      }
+
+      .month li {
+        position: relative;
+        padding-left: 0.7em;
+      }
+
+      .month li::before {
+        content: "•";
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+
+      .notes {
+        position: absolute;
+        top: 92px;
+        right: 18px;
+        width: 292px;
+        display: grid;
+        gap: 10px;
+      }
+
+      .note {
+        border: 3px solid var(--line);
+        border-radius: 12px;
+        padding: 7px 10px 10px;
+        min-height: 110px;
+      }
+
+      .note .label {
+        display: block;
+        text-align: center;
+        font-size: 0.8rem;
+        letter-spacing: 0.08em;
+        font-weight: 700;
+        margin-bottom: 5px;
+      }
+
+      .note ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 4px;
+        text-align: center;
+        font-size: 0.78rem;
+        line-height: 1.2;
+      }
+
+      .note.red { background: var(--day); }
+      .note.blue { background: var(--blue); }
+      .note.green { background: var(--green); }
+      .note.gold { background: var(--gold); }
+
+      .refs {
+        position: relative;
+        z-index: 1;
+        margin-left: 18px;
+        margin-right: 330px;
+        margin-top: 10px;
+        border-top: 2px solid var(--line);
+        padding-top: 8px;
+      }
+
+      .refs h3 {
+        margin: 0 0 5px;
+        text-align: center;
+        font-size: 0.76rem;
+        letter-spacing: 0.08em;
+      }
+
+      .refs ul {
+        list-style: disc;
+        margin: 0;
+        padding-left: 1.2rem;
+        display: grid;
+        gap: 3px;
+        font-size: 0.72rem;
+        line-height: 1.25;
+      }
+
+      .refs a {
+        color: var(--ink);
+        text-decoration: underline;
+      }
+
+      @media (max-width: 980px) {
+        .board { min-height: auto; }
+        .calendar-grid {
+          width: calc(100% - 18px);
+          grid-template-columns: repeat(3, 1fr);
+          padding-top: 18px;
+        }
+        .notes {
+          position: static;
+          width: calc(100% - 36px);
+          margin: 12px 18px 0;
+        }
+        .refs {
+          margin-right: 18px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="board-wrap">
+      <div class="board">
+        <div class="calendar-grid" aria-label="2027 calendar board">
+          <div class="month">
+            <div class="month-header">JAN</div>
+            <ul>
+              <li>Backpacking places</li>
+              <li>Point Reyes</li>
+              <li>Angel Island</li>
+              <li>Yosemite</li>
+              <li>Mt. Madonna</li>
+              <li>Henry Coe</li>
+              <li>Black Mountain</li>
+            </ul>
+          </div>
+
+          <div class="month">
+            <div class="month-header">FEB</div>
+            <ul>
+              <li>Backpacking</li>
+              <li>Sea Base</li>
+              <li>Camporee</li>
+              <li>Day outings</li>
+              <li>Roller skating</li>
+              <li>San Bruno</li>
+            </ul>
+          </div>
+
+          <div class="month">
+            <div class="month-header">MAR</div>
+            <ul>
+              <li>Camporee</li>
+              <li>First aid</li>
+              <li>Rummage sale</li>
+              <li>Beach conservation</li>
+              <li>Service project</li>
+              <li>Campout</li>
+            </ul>
+          </div>
+
+          <div class="month">
+            <div class="month-header">APR</div>
+            <ul>
+              <li>TTFC</li>
+              <li>Med. backpack</li>
+              <li>Hygiene kits</li>
+              <li>Service project</li>
+              <li>Conservation</li>
+              <li>Campout</li>
+            </ul>
+          </div>
+
+          <div class="month">
+            <div class="month-header">MAY</div>
+            <ul>
+              <li>Day outings</li>
+              <li>Summer camp prep</li>
+              <li>Rummage sale</li>
+              <li>Day hike</li>
+              <li>Camporee</li>
+              <li>Flag duty</li>
+            </ul>
+          </div>
+
+          <div class="month">
+            <div class="month-header">JUN</div>
+            <ul>
+              <li>Swimming</li>
+              <li>Beach camp</li>
+              <li>Chawanakee</li>
+              <li>Campout</li>
+              <li>Hike</li>
+              <li>Service work</li>
+            </ul>
+          </div>
+
+          <div class="month">
+            <div class="month-header">JUL</div>
+            <ul>
+              <li>Summer camp</li>
+              <li>Chawanakee</li>
+              <li>Waterfront</li>
+              <li>Backpacking</li>
+              <li>Day outing</li>
+              <li>Campout</li>
+            </ul>
+          </div>
+
+          <div class="month">
+            <div class="month-header">AUG</div>
+            <ul>
+              <li>Beach camp</li>
+              <li>Boat outing</li>
+              <li>Paddleboarding</li>
+              <li>Scout Sunday</li>
+              <li>PLC</li>
+              <li>Popcorn</li>
+            </ul>
+          </div>
+
+          <div class="month">
+            <div class="month-header">SEP</div>
+            <ul>
+              <li>Renaissance Faire</li>
+              <li>First aid</li>
+              <li>Conservation</li>
+              <li>Campout</li>
+              <li>Patrol planning</li>
+              <li>Service day</li>
+            </ul>
+          </div>
+
+          <div class="month">
+            <div class="month-header">OCT</div>
+            <ul>
+              <li>Boating</li>
+              <li>Pinnacles</li>
+              <li>Adv. backpack</li>
+              <li>Campout</li>
+              <li>Service day</li>
+              <li>Boat evening</li>
+            </ul>
+          </div>
+
+          <div class="month">
+            <div class="month-header">NOV</div>
+            <ul>
+              <li>Hygiene kits</li>
+              <li>Service project</li>
+              <li>Campout</li>
+              <li>Career night</li>
+              <li>Turkey dinner</li>
+              <li>Training</li>
+            </ul>
+          </div>
+
+          <div class="month">
+            <div class="month-header">DEC</div>
+            <ul>
+              <li>Holiday gathering</li>
+              <li>Wreaths</li>
+              <li>Service</li>
+              <li>Campout</li>
+              <li>Planning</li>
+              <li>Wrap up</li>
+            </ul>
+          </div>
+        </div>
+
+        <aside class="notes" aria-label="2027 notes">
+          <div class="note red">
+            <span class="label">Day Outings</span>
+            <ul>
+              <li>Beach camp</li>
+              <li>Roller skating</li>
+              <li>Conservation</li>
+            </ul>
+          </div>
+
+          <div class="note blue">
+            <span class="label">Backpacking</span>
+            <ul>
+              <li>Point Reyes</li>
+              <li>Yosemite</li>
+              <li>Mt. Madonna</li>
+            </ul>
+          </div>
+
+          <div class="note green">
+            <span class="label">Service</span>
+            <ul>
+              <li>Hygiene kits</li>
+              <li>Camporee</li>
+              <li>Trail work</li>
+            </ul>
+          </div>
+
+          <div class="note gold">
+            <span class="label">Camp &amp; Events</span>
+            <ul>
+              <li>Camporee</li>
+              <li>Ren Faire</li>
+              <li>Summer camp</li>
+            </ul>
+          </div>
+        </aside>
+
+        <div class="refs">
+          <h3>REFERENCES</h3>
+          <ul>
+            <li><a href="https://docs.google.com/document/d/1Sdar5QkIglTXDIrphP6CK11ubFREmLr3/edit?usp=sharing&ouid=108666925290715653795&rtpof=true&sd=true">Guidelines for creating calendar</a></li>
+            <li><a href="https://www.opm.gov/policy-data-oversight/pay-leave/federal-holidays/#url=2024">Official federal holidays</a></li>
+            <li><a href="https://www.saratogausd.org//cms/lib/CA01902749/Centricity/Domain/4/SUSD%20Academic%20Year%20Calendar%202023-24%20-%20One%20Page%20Calendar.pdf">Saratoga USD 2023-24</a></li>
+            <li><a href="https://www.saratogausd.org//cms/lib/CA01902749/Centricity/Domain/4/SUSD%20Academic%20Year%20Calendar%202024-25%20-%20One%20Page%20Calendar.pdf">Saratoga USD 2024-25</a></li>
+            <li><a href="https://scc-cert.org/calendar.html">CERT dates</a></li>
+            <li><a href="https://svmbc.org/event/bearpaw-outdoor/">BearPaw</a></li>
+            <li><a href="https://norcalrenfaire.com/">Ren Faire</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
