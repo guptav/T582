@@ -3,164 +3,422 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Troop 582 Calendar 2027</title>
+    <title>Troop 582 2027 Calendar</title>
     <style>
       :root {
-        --bg: #eef3ef;
-        --panel: #ffffff;
-        --ink: #1f2f2a;
-        --muted: #5c6d66;
-        --green: #1f5b3c;
-        --green-soft: #e3f0e7;
-        --gold: #d0a63a;
-        --border: #d8e1d8;
+        --board-bg: #dfe3d8;
+        --board-panel: #ece9e1;
+        --ink: #111111;
+        --grid: #202020;
+        --muted: #4f514d;
+        --note: #f5f8f1;
+        --blue: #4d7cf5;
+        --green: #5fbf73;
+        --red: #d96a4d;
+        --purple: #9368d6;
+        --gold: #d5a73a;
       }
 
       * { box-sizing: border-box; }
 
       body {
         margin: 0;
-        font-family: Arial, Helvetica, sans-serif;
-        background: linear-gradient(180deg, #dfe8e1 0%, var(--bg) 100%);
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        background: linear-gradient(180deg, #c7c7c2 0%, #9c9d9d 100%);
+        font-family: "Comic Sans MS", "Marker Felt", "Bradley Hand", cursive;
         color: var(--ink);
       }
 
-      .page {
-        max-width: 1400px;
-        margin: 0 auto;
-        padding: 32px 20px 48px;
+      .board-wrap {
+        width: min(1280px, 96vw);
+        padding: 26px 18px 34px;
       }
 
-      .header {
-        background: linear-gradient(135deg, var(--green) 0%, #2c7751 100%);
-        color: white;
+      .board {
+        background: #e7e1db;
+        border: 3px solid rgba(22, 22, 22, 0.9);
         border-radius: 18px;
-        padding: 22px 26px;
-        box-shadow: 0 10px 18px rgba(31, 91, 60, 0.18);
-      }
-
-      .header h1 {
-        margin: 0 0 8px;
-        font-size: clamp(2rem, 3vw, 3rem);
-        letter-spacing: -0.04em;
-      }
-
-      .header p {
-        margin: 0;
-        font-size: 1rem;
-        color: rgba(255,255,255,0.88);
-      }
-
-      .gallery {
-        display: grid;
-        gap: 24px;
-        margin-top: 26px;
-      }
-
-      .panel {
-        background: var(--panel);
-        border: 1px solid var(--border);
-        border-radius: 18px;
-        padding: 18px;
-        box-shadow: 0 10px 18px rgba(25, 41, 33, 0.08);
-      }
-
-      .image-wrap {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        box-shadow: 0 14px 30px rgba(18, 18, 18, 0.25);
+        position: relative;
         overflow: hidden;
-        border-radius: 12px;
-        background: #f6f8f6;
-        min-height: 540px;
       }
 
-      .image-wrap img {
-        display: block;
-        width: 100%;
-        height: auto;
-        max-height: 72vh;
-        object-fit: contain;
-        border-radius: 12px;
+      .board::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: repeating-linear-gradient(
+          to bottom,
+          rgba(0,0,0,0.02),
+          rgba(0,0,0,0.02) 2px,
+          transparent 2px,
+          transparent 7px
+        );
+        pointer-events: none;
       }
 
-      .references {
-        margin-top: 26px;
-        background: #fff;
-        border: 1px solid var(--border);
-        border-radius: 18px;
-        padding: 22px 24px;
-        box-shadow: 0 10px 18px rgba(25, 41, 33, 0.06);
+      .title {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+        font-size: clamp(1.7rem, 2.2vw, 3rem);
+        letter-spacing: 0.04em;
+        padding: 18px 20px 8px;
+        font-weight: 700;
       }
 
-      .references h2 {
-        margin: 0 0 14px;
-        color: var(--green);
-        font-size: 1.2rem;
-      }
-
-      .references ul {
-        margin: 0;
-        padding-left: 1.2rem;
+      .layout {
+        position: relative;
+        z-index: 1;
         display: grid;
+        grid-template-columns: minmax(0, 1.5fr) minmax(240px, 0.7fr);
+        gap: 12px;
+        padding: 0 18px 18px;
+      }
+
+      .months {
+        display: grid;
+        grid-template-rows: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .row {
+        display: grid;
+        grid-template-columns: repeat(6, minmax(0, 1fr));
         gap: 8px;
       }
 
-      .references a {
-        color: var(--green);
+      .month {
+        background: rgba(255,255,255,0.14);
+        border: 3px solid var(--grid);
+        border-radius: 12px;
+        min-height: 240px;
+        padding: 8px 8px 10px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .month-header {
+        text-align: center;
+        font-size: clamp(1rem, 1.3vw, 2rem);
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        margin-bottom: 6px;
+        padding-bottom: 4px;
+        border-bottom: 2px solid rgba(16,16,16,0.8);
+      }
+
+      .month ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 4px;
+        font-size: clamp(0.68rem, 0.78vw, 0.9rem);
+        line-height: 1.15;
+      }
+
+      .month li {
+        position: relative;
+        padding-left: 0.4em;
+        word-break: break-word;
+      }
+
+      .month li::before {
+        content: "•";
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+
+      .notes {
+        background: rgba(255,255,255,0.12);
+        border: 3px solid var(--grid);
+        border-radius: 14px;
+        padding: 12px 10px 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .note-card {
+        background: rgba(255,255,255,0.18);
+        border: 2px solid rgba(17,17,17,0.7);
+        border-radius: 14px;
+        padding: 8px 8px 10px;
+        min-height: 92px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .note-card .label {
+        display: block;
+        font-size: 0.78rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        text-align: center;
+        margin-bottom: 4px;
+        font-weight: 700;
+      }
+
+      .note-card ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 5px;
+        text-align: center;
+        font-size: 0.82rem;
+      }
+
+      .note-card li {
+        line-height: 1.2;
+      }
+
+      .note-card.red { background: rgba(235, 121, 101, 0.18); }
+      .note-card.blue { background: rgba(119, 156, 235, 0.16); }
+      .note-card.green { background: rgba(115, 185, 120, 0.18); }
+      .note-card.gold { background: rgba(219, 180, 86, 0.18); }
+
+      .ref-block {
+        margin-top: 8px;
+        padding-top: 6px;
+        border-top: 2px solid rgba(17,17,17,0.7);
+      }
+
+      .ref-block h3 {
+        margin: 0 0 8px;
+        font-size: 0.82rem;
+        text-align: center;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .ref-block a {
+        color: var(--ink);
         text-decoration: underline;
       }
 
-      @media (max-width: 768px) {
-        .page {
-          padding: 18px 14px 32px;
+      .ref-block ul {
+        list-style: disc;
+        margin: 0;
+        padding-left: 18px;
+        display: grid;
+        gap: 4px;
+        font-size: 0.7rem;
+        line-height: 1.25;
+      }
+
+      @media (max-width: 980px) {
+        .layout {
+          grid-template-columns: 1fr;
         }
 
-        .image-wrap {
-          min-height: 320px;
+        .notes {
+          order: -1;
         }
       }
     </style>
   </head>
   <body>
-    <main class="page">
-      <header class="header">
-        <h1>Troop 582 Calendar 2027</h1>
-        <p>Prepared from the 2027 calendar images and the guideline references used for planning.</p>
-      </header>
+    <div class="board-wrap">
+      <div class="board">
+        <div class="title">Troop 582 Calendar 2027</div>
 
-      <section class="gallery" aria-label="2027 Troop 582 calendar pages">
-        <div class="panel">
-          <div class="image-wrap">
-            <img src="./2027-calendar-image1.jpg" alt="Troop 582 2027 calendar page 1" />
+        <div class="layout">
+          <div class="months">
+            <div class="row">
+              <div class="month">
+                <div class="month-header">JAN</div>
+                <ul>
+                  <li>Backpacking places</li>
+                  <li>Ice Skate B-day</li>
+                  <li>Point Reyes</li>
+                  <li>Yosemite</li>
+                  <li>Mt. Madonna</li>
+                  <li>Samuel P. Taylor</li>
+                </ul>
+              </div>
+              <div class="month">
+                <div class="month-header">FEB</div>
+                <ul>
+                  <li>Backpacking</li>
+                  <li>Sea Base</li>
+                  <li>Camporee</li>
+                  <li>Day hike</li>
+                  <li>Angel Island</li>
+                  <li>San Bruno</li>
+                </ul>
+              </div>
+              <div class="month">
+                <div class="month-header">MAR</div>
+                <ul>
+                  <li>Camporee</li>
+                  <li>Day outing</li>
+                  <li>Rummage sale</li>
+                  <li>First aid</li>
+                  <li>Stoves</li>
+                  <li>Scouts</li>
+                </ul>
+              </div>
+              <div class="month">
+                <div class="month-header">APR</div>
+                <ul>
+                  <li>Camporee</li>
+                  <li>Med. backpack</li>
+                  <li>Hygiene kits</li>
+                  <li>Service project</li>
+                  <li>Conservation day</li>
+                  <li>Trail work</li>
+                </ul>
+              </div>
+              <div class="month">
+                <div class="month-header">MAY</div>
+                <ul>
+                  <li>Day outings</li>
+                  <li>Summer camp prep</li>
+                  <li>Rummage sale</li>
+                  <li>Flag duty</li>
+                  <li>Camporee</li>
+                  <li>Hike</li>
+                </ul>
+              </div>
+              <div class="month">
+                <div class="month-header">JUN</div>
+                <ul>
+                  <li>Swimming</li>
+                  <li>TTFC</li>
+                  <li>Beach day</li>
+                  <li>Camp</li>
+                  <li>Hike</li>
+                  <li>Service</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="month">
+                <div class="month-header">JUL</div>
+                <ul>
+                  <li>Summer camp</li>
+                  <li>Chawanakee</li>
+                  <li>Day outing</li>
+                  <li>Waterfront</li>
+                  <li>Backpacking</li>
+                  <li>Hike</li>
+                </ul>
+              </div>
+              <div class="month">
+                <div class="month-header">AUG</div>
+                <ul>
+                  <li>Beach camp</li>
+                  <li>River trip</li>
+                  <li>Patrol meetings</li>
+                  <li>Scout Sunday</li>
+                  <li>PLC</li>
+                  <li>Popcorn</li>
+                </ul>
+              </div>
+              <div class="month">
+                <div class="month-header">SEP</div>
+                <ul>
+                  <li>Renaissance Faire</li>
+                  <li>First aid</li>
+                  <li>Training</li>
+                  <li>Patrol planning</li>
+                  <li>Conservation</li>
+                  <li>Campout</li>
+                </ul>
+              </div>
+              <div class="month">
+                <div class="month-header">OCT</div>
+                <ul>
+                  <li>Boat outing</li>
+                  <li>Pinnacles</li>
+                  <li>Adv. backpack</li>
+                  <li>PLC</li>
+                  <li>Service day</li>
+                  <li>Campfire night</li>
+                </ul>
+              </div>
+              <div class="month">
+                <div class="month-header">NOV</div>
+                <ul>
+                  <li>Hygiene kits</li>
+                  <li>Service project</li>
+                  <li>Ceremony</li>
+                  <li>Training</li>
+                  <li>Campout</li>
+                  <li>Tour</li>
+                </ul>
+              </div>
+              <div class="month">
+                <div class="month-header">DEC</div>
+                <ul>
+                  <li>Holiday gathering</li>
+                  <li>Wreaths</li>
+                  <li>Service</li>
+                  <li>Campout</li>
+                  <li>Planning</li>
+                  <li>Wrap up</li>
+                </ul>
+              </div>
+            </div>
           </div>
-        </div>
 
-        <div class="panel">
-          <div class="image-wrap">
-            <img src="./2027-calendar-image2.jpg" alt="Troop 582 2027 calendar page 2" />
-          </div>
-        </div>
-      </section>
+          <aside class="notes">
+            <div class="note-card red">
+              <span class="label">Day Outings</span>
+              <ul>
+                <li>Beach camp</li>
+                <li>Roller skating</li>
+                <li>Conservation day</li>
+              </ul>
+            </div>
 
-      <section class="references" aria-label="Reference links for calendar planning">
-        <h2>Reference Links</h2>
-        <ul>
-          <li><a href="https://docs.google.com/document/d/1Sdar5QkIglTXDIrphP6CK11ubFREmLr3/edit?usp=sharing&ouid=108666925290715653795&rtpof=true&sd=true">Guidelines for creating calendar</a></li>
-          <li><a href="https://www.opm.gov/policy-data-oversight/pay-leave/federal-holidays/#url=2024">Official federal holidays</a></li>
-          <li><a href="https://www.saratogausd.org//cms/lib/CA01902749/Centricity/Domain/4/SUSD%20Academic%20Year%20Calendar%202023-24%20-%20One%20Page%20Calendar.pdf">Saratoga USD Calendar 2023-2024</a></li>
-          <li><a href="https://www.saratogausd.org//cms/lib/CA01902749/Centricity/Domain/4/SUSD%20Academic%20Year%20Calendar%202024-25%20-%20One%20Page%20Calendar.pdf">Saratoga USD Calendar 2024-2025</a></li>
-          <li><a href="https://www.cusdk8.org/about-us/calendar">Cupertino USD Calendar</a></li>
-          <li><a href="https://resources.finalsite.net/images/v1692297334/santaclarausdorg/sfycfceu0evctju3fcuk/2023-2024Calendar-Updated5-11-23.pdf">Santa Clara USD Calendar</a></li>
-          <li><a href="https://scc-cert.org/calendar.html">CERT dates</a></li>
-          <li><a href="https://svmbc.org/event/bearpaw-outdoor/">Prior BearPaw event info</a></li>
-          <li><a href="https://svmbc.org/events/category/camporee/">Spring Camporee</a></li>
-          <li><a href="https://svmbc.org/activities/sor/">Scout-o-Rama</a></li>
-          <li><a href="https://norcalrenfaire.com/">Ren Faire</a></li>
-          <li><a href="https://www.calacademy.org/penguinspajamas-sleepovers">CA Academy of Science sleepovers</a></li>
-          <li><a href="https://beachboardwalk.com/boardwalk-overnights/?gad_source=1&gclid=CjwKCAjwmaO4BhAhEiwA5p4YL7TBddgUPu39co75UJVse58Vkj4nTMJ9uhvZHuQc7HH5rtusZfSA2RoCae4QAvD_BwE">Santa Cruz Boardwalk</a></li>
-        </ul>
-      </section>
-    </main>
+            <div class="note-card blue">
+              <span class="label">Backpacking</span>
+              <ul>
+                <li>Point Reyes</li>
+                <li>Yosemite</li>
+                <li>Mt. Madonna</li>
+              </ul>
+            </div>
+
+            <div class="note-card green">
+              <span class="label">Service</span>
+              <ul>
+                <li>Hygiene kits</li>
+                <li>Flags</li>
+                <li>Trail work</li>
+              </ul>
+            </div>
+
+            <div class="note-card gold">
+              <span class="label">Camp &amp; Events</span>
+              <ul>
+                <li>Camporee</li>
+                <li>Renaissance Faire</li>
+                <li>Summer camp</li>
+              </ul>
+            </div>
+
+            <div class="ref-block">
+              <h3>References</h3>
+              <ul>
+                <li><a href="https://docs.google.com/document/d/1Sdar5QkIglTXDIrphP6CK11ubFREmLr3/edit?usp=sharing&ouid=108666925290715653795&rtpof=true&sd=true">Guidelines</a></li>
+                <li><a href="https://www.opm.gov/policy-data-oversight/pay-leave/federal-holidays/#url=2024">Federal holidays</a></li>
+                <li><a href="https://svmbc.org/event/bearpaw-outdoor/">Bear Paw</a></li>
+                <li><a href="https://scc-cert.org/calendar.html">CERT dates</a></li>
+                <li><a href="https://norcalrenfaire.com/">Ren Faire</a></li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
